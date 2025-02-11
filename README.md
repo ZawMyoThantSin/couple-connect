@@ -1,7 +1,5 @@
 # Couples Relationship Web App
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) <!-- Replace with your project's license -->
-
 A web-based relationship management app for couples, providing a private digital space to enhance communication, intimacy, and relationship tracking. It includes features like chat, shared memories, reminders, love challenges, and more.
 
 ---
@@ -63,8 +61,33 @@ This project is a web-based relationship management app for couples, providing a
    git clone https://github.com/your-repo/couples-app.git
    cd couples-app-backend
    ```
-
-
+2. Configure **application.properties** for database connection:
+   ```bash
+   spring.datasource.url=jdbc:mysql://localhost:3306/couples_db
+   spring.datasource.username=root
+   spring.datasource.password=your_password
+   spring.security.oauth2.client.registration.google.client-id=your_client_id
+   spring.security.oauth2.client.registration.google.client-secret=your_client_secret
+   jwt.secret=your_jwt_secret
+   ```
+3. Build and run the application:
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
+   ```
+### Frontend (Angular)
+1. Navigate to the frontend directory:
+   ```bash
+   cd couples-app-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the Angular application:
+   ```bash
+   ng serve
+   ```
 Contributors
 
 [Zaw Myo Thant Sin](https://github.com/zawmyothantsin) - Lead Developer
