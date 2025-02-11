@@ -10,9 +10,7 @@ A web-based relationship management app for couples, providing a private digital
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Installation & Setup](#installation--setup)
-- [API Endpoints](#api-endpoints)
 - [Contributors](#contributors)
-- [License](#license)
 
 ---
 
