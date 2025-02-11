@@ -1,0 +1,17 @@
+<div class="space-y-8">
+  <h1 class="text-3xl font-bold text-primary mb-8 flex items-center">
+    Upcoming Special Days
+    <i-lucide name="heart" class="ml-2 text-love-red animate-heartbeat"></i-lucide>
+  </h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div *ngFor="let reminder of reminders" class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4 transform hover:scale-105 transition duration-300">
+      <div [ngClass]="reminder.color" class="flex-shrink-0 w-12 h-12 rounded-full bg-love-lavender flex items-center justify-center">
+        <i-lucide [name]="reminder.icon" class="w-6 h-6"></i-lucide>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-primary">{{reminder.title}}</h3>
+        <p class="text-gray-600">{{reminder.date}}</p>
+      </div>
+    </div>
+  </div>
+</div>

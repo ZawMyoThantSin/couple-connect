@@ -1,0 +1,29 @@
+<div class="h-[calc(100vh-4rem)] sm:h-[calc(100vh-2rem)] flex flex-col">
+  <h1 class="text-3xl font-bold text-primary mb-4 flex items-center">
+    Chat with Sarah
+    <i-lucide name="heart" class="ml-2 text-love-red animate-heartbeat"></i-lucide>
+  </h1>
+  <div class="flex-1 bg-white rounded-lg shadow-md p-4 mb-4 overflow-y-auto">
+    <div *ngFor="let message of messages" [ngClass]="{'text-right': message.sender === 'You'}" class="mb-4">
+      <div [ngClass]="{'bg-love-pink text-white': message.sender === 'You', 'bg-love-lavender': message.sender !== 'You'}" class="inline-block p-2 rounded-lg">
+        <p>{{message.message}}</p>
+        <p class="text-xs mt-1 opacity-75">{{message.timestamp}}</p>
+      </div>
+    </div>
+  </div>
+  <form (ngSubmit)="sendMessage()" class="flex">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      name="newMessage"
+      placeholder="Type your message..."
+      class="flex-1 p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-love-pink"
+    >
+    <button
+      type="submit"
+      class="bg-love-pink text-white p-2 rounded-r-lg hover:bg-love-red transition duration-300"
+    >
+      <i-lucide name="send"></i-lucide>
+    </button>
+  </form>
+</div>

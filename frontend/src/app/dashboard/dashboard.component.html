@@ -1,0 +1,82 @@
+<ng-container *ngIf="!isPartnerConnected; else connectedDashboard">
+  <div class="min-h-screen flex flex-col items-center justify-center bg-love-lavender p-4">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
+      <h1 class="text-3xl font-bold text-primary mb-6 flex items-center justify-center">
+        <i-lucide name="heart" class="mr-2 text-love-red"></i-lucide>
+        Welcome to CoupleConnect
+      </h1>
+      <p class="text-gray-600 mb-6">
+        Connect with your partner to unlock all features and start your journey together.
+      </p>
+      <button (click)="handleConnect()" class="bg-love-pink hover:bg-love-red text-white font-bold py-2 px-4 rounded-md transition duration-300 inline-flex items-center">
+        Connect with Partner
+        <i-lucide name="arrow-right" class="ml-2"></i-lucide>
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #connectedDashboard>
+  <div class="space-y-8">
+    <h1 class="text-3xl font-bold text-primary mb-8">Welcome back, {{fakeUser.name}}!</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
+          <i-lucide name="heart" class="mr-2 text-love-red"></i-lucide>
+          Partner Profile
+        </h2>
+        <div class="flex items-center space-x-4">
+          <img [src]="fakeUser.partnerAvatar || '/placeholder.svg'" [alt]="fakeUser.partnerName" class="w-16 h-16 rounded-full">
+          <div>
+            <p class="font-semibold text-gray-800">{{fakeUser.partnerName}}</p>
+            <a routerLink="/profile" class="text-love-pink hover:text-love-red transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
+          <i-lucide name="message-circle" class="mr-2 text-love-pink"></i-lucide>
+          Recent Messages
+        </h2>
+        <ul class="space-y-2">
+          <li class="text-gray-600">Michael: "Miss you, honey! 😘"</li>
+          <li class="text-gray-600">You: "Can't wait to see you tonight! ❤️"</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
+          <i-lucide name="calendar" class="mr-2 text-love-purple"></i-lucide>
+          Upcoming Events
+        </h2>
+        <ul class="space-y-2">
+          <li class="text-gray-600">Date Night - Friday, 7 PM</li>
+          <li class="text-gray-600">Anniversary - Next Monday</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
+          <i-lucide name="gift" class="mr-2 text-love-pink"></i-lucide>
+          Gift Ideas
+        </h2>
+        <ul class="space-y-2">
+          <li class="text-gray-600">Couples Cooking Class</li>
+          <li class="text-gray-600">Matching Bracelets</li>
+          <li class="text-gray-600">Weekend Getaway</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
+          <i-lucide name="music" class="mr-2 text-love-purple"></i-lucide>
+          Our Playlist
+        </h2>
+        <ul class="space-y-2">
+          <li class="text-gray-600">1. "Perfect" - Ed Sheeran</li>
+          <li class="text-gray-600">2. "All of Me" - John Legend</li>
+          <li class="text-gray-600">3. "Can't Help Falling in Love" - Elvis Presley</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>

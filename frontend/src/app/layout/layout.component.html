@@ -1,0 +1,67 @@
+<div class="min-h-screen flex flex-col bg-love-lavender">
+  <ng-container *ngIf="isDesktop; else mobileLayout">
+    <header class="bg-white shadow-md p-4 flex justify-between items-center z-40 relative">
+      <button (click)="toggleSidebar()" class="text-gray-700">
+        <i-lucide name="menu" class="w-6 h-6"></i-lucide>
+      </button>
+      <h2 class="text-xl font-bold text-primary flex items-center">
+        <i-lucide name="heart" class="mr-2 text-love-red animate-heartbeat"></i-lucide>
+        CoupleConnect
+      </h2>
+      <div class="w-6"></div>
+    </header>
+    <nav [class.translate-x-0]="isSidebarOpen" [class.-translate-x-full]="!isSidebarOpen" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-all duration-300 ease-in-out z-50">
+      <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-primary flex items-center">
+          <i-lucide name="heart" class="mr-2 text-love-red animate-heartbeat"></i-lucide>
+          CoupleConnect
+        </h2>
+        <button (click)="toggleSidebar()" class="text-gray-700">
+          <i-lucide name="x" class="w-6 h-6"></i-lucide>
+        </button>
+      </div>
+      <div class="p-4 border-b border-gray-200">
+        <div class="flex items-center space-x-3">
+          <img [src]="fakeUser.avatar || '/placeholder.svg'" [alt]="fakeUser.name" class="w-10 h-10 rounded-full">
+          <div>
+            <p class="font-semibold text-gray-700">{{fakeUser.name}}</p>
+            <p class="text-sm text-gray-500">{{fakeUser.email}}</p>
+          </div>
+        </div>
+      </div>
+      <ul class="mt-4">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.href" routerLinkActive="bg-love-pink text-white" class="flex items-center py-2 px-4 text-gray-700 hover:bg-love-pink hover:text-white transition duration-300">
+            <i-lucide [name]="item.icon" class="mr-2"></i-lucide>
+            {{item.label}}
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main [class.ml-64]="isSidebarOpen" class="transition-all duration-300 ease-in-out p-8 flex-grow">
+      <router-outlet></router-outlet>
+    </main>
+  </ng-container>
+
+  <ng-template #mobileLayout>
+    <header class="bg-white shadow-md p-4 flex justify-center items-center z-40 relative">
+      <h2 class="text-xl font-bold text-primary flex items-center">
+        <i-lucide name="heart" class="mr-2 text-love-red animate-heartbeat"></i-lucide>
+        CoupleConnect
+      </h2>
+    </header>
+    <main class="p-4 pb-20 flex-grow">
+      <router-outlet></router-outlet>
+    </main>
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-40">
+      <ul class="flex justify-around items-center h-16">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.href" routerLinkActive="text-love-pink" class="flex flex-col items-center justify-center p-2 text-gray-700">
+            <i-lucide [name]="item.icon" class="w-6 h-6"></i-lucide>
+            <span class="text-xs mt-1">{{item.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </ng-template>
+</div>

@@ -1,0 +1,65 @@
+<div class="space-y-8">
+  <h1 class="text-3xl font-bold text-primary mb-8">Your Profile</h1>
+
+  <!-- User Info Section -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="flex items-center space-x-4">
+      <img [src]="fakeUser.avatar || '/placeholder.svg'" [alt]="fakeUser.name" class="w-20 h-20 rounded-full">
+      <div class="flex-grow">
+        <h2 class="text-2xl font-semibold text-gray-800">{{fakeUser.name}}</h2>
+        <p class="text-gray-600">{{fakeUser.email}}</p>
+        <p class="text-gray-600">Partner: {{fakeUser.partnerName}}</p>
+        <p class="text-gray-600">Anniversary: {{fakeUser.anniversaryDate}}</p>
+      </div>
+      <a routerLink="/profile/edit" class="text-love-pink hover:text-love-red transition-colors">
+        <app-i-lucide name="edit" class="w-6 h-6"></app-i-lucide>
+      </a>
+    </div>
+  </div>
+
+  <!-- Reminders Section -->
+  <div class="space-y-4">
+    <div class="flex justify-between items-center">
+      <h2 class="text-2xl font-semibold text-primary flex items-center">
+        <i-lucide name="bell" class="mr-2"></i-lucide>
+        Your Reminders
+      </h2>
+      <a routerLink="/profile/add-reminder" class="text-love-pink hover:text-love-red transition-colors">
+        <i-lucide name="plus" class="w-6 h-6"></i-lucide>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div *ngFor="let reminder of reminders" class="bg-white p-4 rounded-lg shadow-md flex items-center space-x-3">
+        <i-lucide [name]="reminder.icon" [ngClass]="reminder.color" class="w-8 h-8"></i-lucide>
+        <div>
+          <h3 class="font-semibold text-gray-800">{{reminder.title}}</h3>
+          <p class="text-gray-600">{{reminder.date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Section -->
+  <div class="space-y-4">
+    <h2 class="text-2xl font-semibold text-primary">Settings</h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <ul class="space-y-2">
+        <li>
+          <a routerLink="/profile/notifications" class="text-gray-700 hover:text-love-pink transition-colors">
+            Notification Preferences
+          </a>
+        </li>
+        <li>
+          <a routerLink="/profile/privacy" class="text-gray-700 hover:text-love-pink transition-colors">
+            Privacy Settings
+          </a>
+        </li>
+        <li>
+          <a routerLink="/profile/change-password" class="text-gray-700 hover:text-love-pink transition-colors">
+            Change Password
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

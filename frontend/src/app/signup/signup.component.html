@@ -1,0 +1,60 @@
+<div class="min-h-screen flex flex-col items-center justify-center p-4 bg-love-lavender">
+  <h1 class="text-3xl font-bold text-primary mb-8 flex items-center">
+    Sign up for CoupleConnect
+    <i-lucide name="heart" class="ml-2 text-love-red animate-heartbeat"></i-lucide>
+  </h1>
+  <div *ngIf="error" class="text-red-500 mb-4">{{error}}</div>
+  <form (ngSubmit)="handleSubmit($event)" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+    <div class="mb-4">
+      <label for="name" class="block text-sm font-medium text-gray-700">
+        Name
+      </label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="name"
+        name="name"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-love-pink focus:ring focus:ring-love-pink focus:ring-opacity-50"
+        required
+      >
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-700">
+        Email
+      </label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-love-pink focus:ring focus:ring-love-pink focus:ring-opacity-50"
+        required
+      >
+    </div>
+    <div class="mb-6">
+      <label for="password" class="block text-sm font-medium text-gray-700">
+        Password
+      </label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-love-pink focus:ring focus:ring-love-pink focus:ring-opacity-50"
+        required
+      >
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-love-pink hover:bg-love-red text-white font-bold py-2 px-4 rounded transition duration-300"
+    >
+      Sign Up
+    </button>
+  </form>
+  <p class="mt-4">
+    Already have an account?
+    <a routerLink="/login" class="text-love-pink hover:text-love-red">
+      Login
+    </a>
+  </p>
+</div>
