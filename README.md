@@ -88,6 +88,6 @@ This project is a web-based relationship management app for couples, providing a
    ```
 ### Contributors
 
-**[Zaw Myo Thant Sin]**(https://github.com/zawmyothantsin) - Lead Developer
+**[Zaw Myo Thant Sin](https://github.com/zawmyothantsin)** - Lead Developer
 
 Happy coding! 🚀
