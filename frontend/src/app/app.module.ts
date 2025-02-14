@@ -16,6 +16,8 @@ import { ConnectComponent } from './connect/connect.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ProfileSetupComponent } from './profile-setup/profile-setup.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     ConnectComponent,
     RemindersComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileSetupComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,9 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     LucideAngularModule.pick(icons),
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

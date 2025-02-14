@@ -9,10 +9,17 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ConnectComponent } from './connect/connect.component';
 import { RemindersComponent } from './reminders/reminders.component';
+import { ProfileSetupComponent } from './profile-setup/profile-setup.component';
+import { canSetupAvatarGuard } from './guards/can-setup-avatar.guard';
+import { CanDeactivateFromSetupGuard } from './guards/can-deactivate-from-setup.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'setup',
+    component: ProfileSetupComponent,
+    canActivate:[canSetupAvatarGuard],
+  },
   {
     path: '', component: LayoutComponent, children: [
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
