@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { User } from '../models/user';
+import { ProfileService } from '../services/user/profile.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,10 +10,14 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  authUser: User | null = null;
   isDesktop = true;
   isSidebarOpen = true;
   isPartnerConnected = false;
   currentRoute = '';
+
+  constructor(private router: Router,private profileService: ProfileService) {}
+
 
   fakeUser = {
     name: "Sarah Johnson",
@@ -32,8 +38,6 @@ export class LayoutComponent implements OnInit {
     { href: '/profile', icon: 'user', label: 'Profile' },
   ];
 
-  constructor(private router: Router) {}
-
   ngOnInit() {
     this.checkScreenSize();
     window.addEventListener('resize', this.checkScreenSize.bind(this));
@@ -41,11 +45,29 @@ export class LayoutComponent implements OnInit {
     const connectionStatus = localStorage.getItem('isPartnerConnected');
     this.isPartnerConnected = connectionStatus === 'true';
 
+    this.getUserProfile();
+
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd) // ✅ Type assertion
     ).subscribe((event: NavigationEnd) => {
       this.currentRoute = event.url;
     });
+  }
+
+  private getUserProfile(){
+    this.profileService.getProfile().subscribe((response)=>{
+      this.authUser = response;
+      this.profileService.updateUserState(this.authUser);
+    }, (error) => {
+      console.warn(error);
+    });
+  }
+
+  public getImageUrl(imagePath: any): string {
+    if(imagePath){
+      return 'http://localhost:8080'+imagePath;
+    }
+    return 'assets/default-avatar/av1.png';
   }
 
   checkScreenSize() {

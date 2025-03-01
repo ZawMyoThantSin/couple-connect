@@ -46,6 +46,8 @@ public class UserEntity {
     @Column(columnDefinition = "INT DEFAULT 0")
     private int status;
 
+    private boolean hasPartner = false;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -147,6 +149,14 @@ public class UserEntity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public boolean isHasPartner() {
+        return hasPartner;
+    }
+
+    public void setHasPartner(boolean hasPartner) {
+        this.hasPartner = hasPartner;
     }
 
     public LocalDateTime getCreatedAt() {

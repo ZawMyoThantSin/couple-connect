@@ -8,6 +8,16 @@
       <p class="text-gray-600 mb-6">
         Connect with your partner to unlock all features and start your journey together.
       </p>
+      <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm text-gray-500 mb-2">Your Connection Code:</p>
+        <div class="text-2xl font-mono font-bold text-primary tracking-wider">
+          {{connectionCode}}
+        </div>
+        <button (click)="copyCode()" class="text-love-pink hover:text-love-red text-sm mt-2 flex items-center justify-center mx-auto">
+          <i-lucide name="copy" class="mr-1 w-4 h-4"></i-lucide>
+          Copy Code
+        </button>
+      </div>
       <button (click)="handleConnect()" class="bg-love-pink hover:bg-love-red text-white font-bold py-2 px-4 rounded-md transition duration-300 inline-flex items-center">
         Connect with Partner
         <i-lucide name="arrow-right" class="ml-2"></i-lucide>
@@ -20,13 +30,14 @@
   <div class="space-y-8">
     <h1 class="text-3xl font-bold text-primary mb-8">Welcome back, {{fakeUser.name}}!</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
         <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
           <i-lucide name="heart" class="mr-2 text-love-red"></i-lucide>
           Partner Profile
         </h2>
         <div class="flex items-center space-x-4">
-          <img [src]="fakeUser.partnerAvatar || '/placeholder.svg'" [alt]="fakeUser.partnerName" class="w-16 h-16 rounded-full">
+          <img [src]="getImageUrl(profileData?.profile)" [alt]="fakeUser.partnerName" class="w-16 h-16 rounded-full">
           <div>
             <p class="font-semibold text-gray-800">{{fakeUser.partnerName}}</p>
             <a routerLink="/profile" class="text-love-pink hover:text-love-red transition-colors">
@@ -35,7 +46,8 @@
           </div>
         </div>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
         <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
           <i-lucide name="message-circle" class="mr-2 text-love-pink"></i-lucide>
           Recent Messages
@@ -45,7 +57,8 @@
           <li class="text-gray-600">You: "Can't wait to see you tonight! ❤️"</li>
         </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
         <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
           <i-lucide name="calendar" class="mr-2 text-love-purple"></i-lucide>
           Upcoming Events
@@ -55,7 +68,8 @@
           <li class="text-gray-600">Anniversary - Next Monday</li>
         </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
         <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
           <i-lucide name="gift" class="mr-2 text-love-pink"></i-lucide>
           Gift Ideas
@@ -66,7 +80,8 @@
           <li class="text-gray-600">Weekend Getaway</li>
         </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
         <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
           <i-lucide name="music" class="mr-2 text-love-purple"></i-lucide>
           Our Playlist
