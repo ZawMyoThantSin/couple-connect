@@ -31,7 +31,7 @@
       </div>
       <ul class="mt-4">
         <li *ngFor="let item of navItems">
-          <a [routerLink]="item.href" routerLinkActive="bg-love-pink text-white" class="flex items-center py-2 px-4 text-gray-700 hover:bg-love-pink hover:text-white transition duration-300">
+          <a [routerLink]="item.href" routerLinkActive="bg-love-pink text-white" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-white transition duration-300">
             <i-lucide [name]="item.icon" class="mr-2"></i-lucide>
             {{item.label}}
           </a>

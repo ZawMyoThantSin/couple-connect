@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: couple-connect
+  datasource:
+    url: jdbc:mysql://localhost:3306/couple_connect?createDatabaseIfNotExist=true
+    username: your-db-user
+    password: your-db-password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
+  resources:
+    static-locations: classpath:/static/, file:uploads/
+cors:
+  allowed-origin: http://localhost:4200
+project:
+  image:
+    upload-dir: uploads
+jwt:
+  secret: jwt-secret-key
+#server:
+#  port: 8080

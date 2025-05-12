@@ -59,7 +59,10 @@ export class LayoutComponent implements OnInit {
       this.authUser = response;
       this.profileService.updateUserState(this.authUser);
     }, (error) => {
-      console.warn(error);
+      if(error.status === 498){
+        alert("Session expired, redirecting to login");
+        this.router.navigate(['/login']);
+      }
     });
   }
 

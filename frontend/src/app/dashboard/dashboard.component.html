@@ -1,4 +1,4 @@
-<ng-container *ngIf="!isPartnerConnected; else connectedDashboard">
+<ng-container *ngIf="isPartnerConnected; else connectedDashboard">
   <div class="min-h-screen flex flex-col items-center justify-center bg-love-lavender p-4">
     <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
       <h1 class="text-3xl font-bold text-primary mb-6 flex items-center justify-center">
@@ -27,70 +27,168 @@
 </ng-container>
 
 <ng-template #connectedDashboard>
-  <div class="space-y-8">
-    <h1 class="text-3xl font-bold text-primary mb-8">Welcome back, {{fakeUser.name}}!</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
-        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
-          <i-lucide name="heart" class="mr-2 text-love-red"></i-lucide>
-          Partner Profile
-        </h2>
-        <div class="flex items-center space-x-4">
-          <img [src]="getImageUrl(profileData?.profile)" [alt]="fakeUser.partnerName" class="w-16 h-16 rounded-full">
-          <div>
-            <p class="font-semibold text-gray-800">{{fakeUser.partnerName}}</p>
-            <a routerLink="/profile" class="text-love-pink hover:text-love-red transition-colors">
-              View Profile
-            </a>
+  <div class="px-6 md:px-12">
+    <!-- Simple clean welcome section -->
+    <div class="mb-14">
+      <h1 class="text-4xl font-bold text-gray-800">
+        Welcome back, <span class="text-love-pink">{{fakeUser.name}}</span>!
+      </h1>
+      <div class="h-1 w-16 bg-love-pink mt-3"></div>
+    </div>
+
+    <!-- Cards grid with more vertical space -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- Partner Profile Card -->
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="p-7">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center">
+              <i-lucide name="heart" class="mr-2 text-love-red"></i-lucide>
+              Partner Profile
+            </h2>
+            <div class="bg-love-lavender text-love-purple text-xs font-semibold px-2 py-0.5 rounded-full">Connected</div>
+          </div>
+          <div class="flex items-center">
+            <div class="relative">
+              <img [src]="getImageUrl(profileData?.profile)" [alt]="fakeUser.partnerName"
+                   class="w-16 h-16 rounded-full object-cover border-2 border-love-pink">
+              <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+            </div>
+            <div class="ml-4">
+              <p class="font-semibold text-gray-800">{{fakeUser.partnerName}}</p>
+              <a routerLink="/profile" class="mt-1 inline-flex items-center text-sm font-medium text-love-pink hover:text-love-red transition-colors">
+                View Profile
+                <i-lucide name="chevron-right" class="ml-1 w-3 h-3"></i-lucide>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
-        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
-          <i-lucide name="message-circle" class="mr-2 text-love-pink"></i-lucide>
-          Recent Messages
-        </h2>
-        <ul class="space-y-2">
-          <li class="text-gray-600">Michael: "Miss you, honey! 😘"</li>
-          <li class="text-gray-600">You: "Can't wait to see you tonight! ❤️"</li>
-        </ul>
+
+      <!-- Recent Messages Card -->
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="p-7">
+          <h2 class="text-xl font-bold text-gray-800 flex items-center mb-6">
+            <i-lucide name="message-circle" class="mr-2 text-love-pink"></i-lucide>
+            Recent Messages
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="flex-shrink-0 h-9 w-9 bg-love-lavender rounded-full flex items-center justify-center">
+                <span class="text-love-purple font-semibold text-sm">M</span>
+              </div>
+              <div class="flex-1 bg-love-lavender p-3 rounded-xl rounded-tl-none">
+                <p class="text-gray-700 text-sm">"Miss you, honey! 😘"</p>
+                <p class="text-gray-400 text-xs mt-1">10:30 AM</p>
+              </div>
+            </div>
+            <div class="flex items-start flex-row-reverse space-x-3 space-x-reverse">
+              <div class="flex-shrink-0 h-9 w-9 bg-love-lavender rounded-full flex items-center justify-center">
+                <span class="text-love-pink font-semibold text-sm">Y</span>
+              </div>
+              <div class="flex-1 bg-love-pink bg-opacity-20 p-3 rounded-xl rounded-tr-none">
+                <p class="text-white text-sm">"Can't wait to see you tonight! ❤️"</p>
+                <p class="text-gray-100 opacity-75 text-xs mt-1">10:32 AM</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
-        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
-          <i-lucide name="calendar" class="mr-2 text-love-purple"></i-lucide>
-          Upcoming Events
-        </h2>
-        <ul class="space-y-2">
-          <li class="text-gray-600">Date Night - Friday, 7 PM</li>
-          <li class="text-gray-600">Anniversary - Next Monday</li>
-        </ul>
+
+      <!-- Upcoming Events Card -->
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="p-7">
+          <h2 class="text-xl font-bold text-gray-800 flex items-center mb-6">
+            <i-lucide name="calendar" class="mr-2 text-love-purple"></i-lucide>
+            Upcoming Events
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-12 h-12 bg-love-lavender rounded-lg flex flex-col items-center justify-center mr-3">
+                <span class="text-love-pink font-bold text-sm leading-none">FRI</span>
+                <span class="text-love-purple font-medium text-xs">7PM</span>
+              </div>
+              <div>
+                <p class="text-gray-800 font-medium">Date Night</p>
+                <p class="text-gray-500 text-sm">Italian Restaurant</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-12 h-12 bg-love-lavender rounded-lg flex flex-col items-center justify-center mr-3">
+                <span class="text-love-pink font-bold text-sm leading-none">MON</span>
+                <span class="text-love-purple font-medium text-xs">ALL DAY</span>
+              </div>
+              <div>
+                <p class="text-gray-800 font-medium">Anniversary</p>
+                <p class="text-gray-500 text-sm">3 Years Together</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
-        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
-          <i-lucide name="gift" class="mr-2 text-love-pink"></i-lucide>
-          Gift Ideas
-        </h2>
-        <ul class="space-y-2">
-          <li class="text-gray-600">Couples Cooking Class</li>
-          <li class="text-gray-600">Matching Bracelets</li>
-          <li class="text-gray-600">Weekend Getaway</li>
-        </ul>
+
+      <!-- Gift Ideas Card -->
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="p-7">
+          <h2 class="text-xl font-bold text-gray-800 flex items-center mb-6">
+            <i-lucide name="gift" class="mr-2 text-love-pink"></i-lucide>
+            Gift Ideas
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-love-pink rounded-full mr-3"></div>
+              <p class="text-gray-700">Couples Cooking Class</p>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-love-purple rounded-full mr-3"></div>
+              <p class="text-gray-700">Matching Bracelets</p>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-love-pink rounded-full mr-3"></div>
+              <p class="text-gray-700">Weekend Getaway</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 border border-gray-100 hover:shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-love-pink opacity-5 rounded-full -mr-10 -mt-10"></div>
-        <h2 class="text-xl font-semibold text-primary mb-4 flex items-center">
-          <i-lucide name="music" class="mr-2 text-love-purple"></i-lucide>
-          Our Playlist
-        </h2>
-        <ul class="space-y-2">
-          <li class="text-gray-600">1. "Perfect" - Ed Sheeran</li>
-          <li class="text-gray-600">2. "All of Me" - John Legend</li>
-          <li class="text-gray-600">3. "Can't Help Falling in Love" - Elvis Presley</li>
-        </ul>
+
+      <!-- Our Playlist Card -->
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="p-7">
+          <h2 class="text-xl font-bold text-gray-800 flex items-center mb-6">
+            <i-lucide name="music" class="mr-2 text-love-purple"></i-lucide>
+            Our Playlist
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-center group">
+              <div class="flex-shrink-0 w-8 h-8 bg-love-lavender rounded-full flex items-center justify-center mr-3 group-hover:bg-love-pink transition-colors">
+                <i-lucide name="play" class="w-4 h-4 text-love-pink group-hover:text-white transition-colors"></i-lucide>
+              </div>
+              <div>
+                <p class="text-gray-800 font-medium">"Perfect"</p>
+                <p class="text-gray-500 text-sm">Ed Sheeran</p>
+              </div>
+            </div>
+            <div class="flex items-center group">
+              <div class="flex-shrink-0 w-8 h-8 bg-love-lavender rounded-full flex items-center justify-center mr-3 group-hover:bg-love-pink transition-colors">
+                <i-lucide name="play" class="w-4 h-4 text-love-purple group-hover:text-white transition-colors"></i-lucide>
+              </div>
+              <div>
+                <p class="text-gray-800 font-medium">"All of Me"</p>
+                <p class="text-gray-500 text-sm">John Legend</p>
+              </div>
+            </div>
+            <div class="flex items-center group">
+              <div class="flex-shrink-0 w-8 h-8 bg-love-lavender rounded-full flex items-center justify-center mr-3 group-hover:bg-love-pink transition-colors">
+                <i-lucide name="play" class="w-4 h-4 text-love-pink group-hover:text-white transition-colors"></i-lucide>
+              </div>
+              <div>
+                <p class="text-gray-800 font-medium">"Can't Help Falling in Love"</p>
+                <p class="text-gray-500 text-sm">Elvis Presley</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
